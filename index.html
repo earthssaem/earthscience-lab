@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>지구과학 배움터 — 지구와 우주를 탐구하다</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌏</text></svg>">
+<style>
+  :root{
+    --bg:#f4f7fa; --card:#ffffff; --ink:#1a2432; --muted:#66748a; --line:#e3e9f0;
+    --teal:#0e7490; --teal-soft:#e6f4f7;
+    --blue:#2563eb; --blue-soft:#e9efff;
+    --orange:#ea580c; --orange-soft:#fff1e8;
+    --emerald:#059669; --emerald-soft:#e6f7f0;
+    --sky:#0284c7; --sky-soft:#e6f3fb;
+    --violet:#7c3aed; --violet-soft:#f1eaff;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif;
+    line-height:1.75;font-size:16px;-webkit-text-size-adjust:100%}
+  .wrap{max-width:920px;margin:0 auto;padding:0 18px}
+  a{color:inherit}
+
+  /* 빵부스러기 */
+  .crumb{background:#101a2b;color:#c9d4e8;font-size:13.5px;padding:11px 18px;display:flex;gap:9px;align-items:center;justify-content:center;flex-wrap:wrap;font-weight:600}
+  .crumb a{color:#fff;text-decoration:none;font-weight:700;opacity:.82;transition:.15s}
+  .crumb a:hover{opacity:1;text-decoration:underline}
+  .crumb b{color:#7dd3fc}
+  .crumb .sep{opacity:.4}
+
+  /* 히어로: 밤하늘 → 바다 → 지평선 */
+  .hero{position:relative;overflow:hidden;color:#fff;text-align:center;padding:64px 18px 74px;
+    background:linear-gradient(160deg,#1e3a8a 0%,#0e7490 58%,#f59e0b 100%)}
+  .hero h1{font-size:clamp(30px,7vw,52px);font-weight:900;margin:0 0 12px;letter-spacing:-1px}
+  .hero p{font-size:clamp(15px,3.6vw,19px);opacity:.96;margin:0 auto;max-width:620px}
+  .hero .eq{font-family:'JetBrains Mono',ui-monospace,monospace;opacity:.92;margin-top:22px;font-size:14.5px}
+  .hero::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:44px;background:var(--bg);
+    border-radius:50% 50% 0 0/100% 100% 0 0}
+
+  /* 목차 네비 */
+  nav.toc{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.93);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);box-shadow:0 5px 18px -16px rgba(20,40,80,.45)}
+  .toc-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;max-width:1120px;margin:0 auto;padding:10px 16px}
+  .toc-group{min-width:0;background:#fff;border:1px solid var(--line);border-top:3px solid var(--group);border-radius:12px;padding:7px 10px 8px}
+  .toc-title{display:flex;align-items:center;gap:7px;text-decoration:none;color:var(--ink);font-size:13px;font-weight:900;line-height:1.3}
+  .toc-title .roman{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:7px;background:var(--group-soft);color:var(--group)}
+  .toc-links{display:flex;flex-wrap:wrap;gap:2px 4px;margin-top:5px}
+  .toc-links a{text-decoration:none;color:var(--muted);font-weight:700;font-size:12.5px;line-height:1.35;padding:3px 6px;border-radius:6px;transition:.15s}
+  .toc-links a:hover,.toc-links a:focus-visible{background:var(--group-soft);color:var(--group)}
+  .toc-group.sim{--group:var(--teal);--group-soft:var(--teal-soft)}
+  .toc-group.data{--group:var(--blue);--group-soft:var(--blue-soft)}
+  .toc-group.game{--group:var(--orange);--group-soft:var(--orange-soft)}
+  @media(max-width:760px){
+    nav.toc{position:relative}
+    .toc-grid{grid-template-columns:1fr;gap:7px;padding:9px 12px}
+    .toc-group{display:grid;grid-template-columns:132px 1fr;align-items:start;gap:4px 8px}
+    .toc-links{margin-top:0}
+  }
+  @media(max-width:430px){
+    .toc-group{grid-template-columns:1fr}
+    .toc-links{margin-top:3px}
+  }
+
+  /* 영역 머리 */
+  .area-head{padding:40px 0 6px;scroll-margin-top:118px}
+  .area-head .kicker{font-size:13px;font-weight:900;letter-spacing:2px;color:var(--muted)}
+  .area-head h2{font-size:clamp(26px,6vw,38px);margin:4px 0 6px;font-weight:900;letter-spacing:-.5px}
+  .area-head .desc{font-size:16px;color:#3a4256;max-width:640px;margin:0}
+  .divider{height:3px;border:0;border-radius:3px;margin:12px 0 0;background:linear-gradient(90deg,var(--c1),var(--c2))}
+  @media(max-width:760px){.area-head{scroll-margin-top:12px}}
+
+  /* 앱 카드 */
+  .apps{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:16px 0 12px}
+  @media(max-width:640px){.apps{grid-template-columns:1fr}}
+  .app{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px 22px 18px;
+    text-decoration:none;color:var(--ink);scroll-margin-top:130px;
+    box-shadow:0 8px 30px -22px rgba(20,40,80,.35);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease}
+  .app:hover,.app:focus-visible{transform:translateY(-3px);border-color:var(--accent);box-shadow:0 18px 36px -20px rgba(20,40,80,.4);outline:none}
+  @media(max-width:760px){.app{scroll-margin-top:12px}}
+  .app-top{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+  .app-ic{flex:0 0 auto;width:52px;height:52px;border-radius:15px;display:grid;place-items:center;font-size:26px;background:var(--accent-soft)}
+  .app-name{font-weight:900;font-size:18px;line-height:1.3;letter-spacing:-.3px}
+  .app-desc{font-size:14.5px;color:#3a4256;margin:0 0 14px;line-height:1.65;flex:1}
+  .app-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+  .subj{display:inline-flex;gap:4px;flex-wrap:wrap}
+  .subj span{font-size:12px;font-weight:800;padding:3px 10px;border-radius:999px;background:var(--s-soft);color:var(--s)}
+  .subj .s-int{--s:var(--emerald);--s-soft:var(--emerald-soft)}
+  .subj .s-gen{--s:var(--sky);--s-soft:var(--sky-soft)}
+  .subj .s-adv{--s:var(--violet);--s-soft:var(--violet-soft)}
+  .app-go{font-size:13.5px;font-weight:800;color:var(--accent);white-space:nowrap}
+  .app.sim{--accent:var(--teal);--accent-soft:var(--teal-soft)}
+  .app.data{--accent:var(--blue);--accent-soft:var(--blue-soft)}
+  .app.game{--accent:var(--orange);--accent-soft:var(--orange-soft)}
+
+  footer{padding:40px 18px 60px;text-align:center;color:var(--muted);font-size:13.5px}
+</style>
+</head>
+<body>
+
+<div class="crumb">
+  <a href="#">🏫 배움터</a><span class="sep">›</span>
+  <a href="#">🔬 과학</a><span class="sep">›</span>
+  <b>🌏 지구과학</b>
+</div>
+
+<header class="hero">
+  <h1>🌏 지구과학 배움터</h1>
+  <p>지구과학은 우리가 사는 지구와 그 너머 우주에서 일어나는 현상을 과학적으로 탐구하는 학문입니다.</p>
+  <div class="eq">지질학 · 대기과학 · 해양학 · 천문학</div>
+</header>
+
+<nav class="toc" aria-label="지구과학 학습 자료 바로가기">
+  <div class="toc-grid">
+    <div class="toc-group sim">
+      <a class="toc-title" href="#area1"><span class="roman">Ⅰ</span> 개념 탐구 시뮬레이션</a>
+      <div class="toc-links">
+        <a href="#fossil-lab">화석 탐구실</a><a href="#stromatolite">스트로마톨라이트</a><a href="#tide-sim">조석 현상</a>
+        <a href="#eclipse">일식·월식</a><a href="#coordinates">천체 좌표계</a><a href="#kepler">케플러 법칙</a>
+      </div>
+    </div>
+    <div class="toc-group data">
+      <a class="toc-title" href="#area2"><span class="roman">Ⅱ</span> 데이터 분석·시각화</a>
+      <div class="toc-links">
+        <a href="#tide-data">조석 데이터</a><a href="#climate-data">기후변화 데이터</a>
+      </div>
+    </div>
+    <div class="toc-group game">
+      <a class="toc-title" href="#area3"><span class="roman">Ⅲ</span> 복습용 게임</a>
+      <div class="toc-links">
+        <a href="#fossil-explorer">화석 탐험대</a><a href="#escape">통합과학 방탈출</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+
+<!-- ============================================================ -->
+<!-- 영역 Ⅰ. 개념 탐구 시뮬레이션 -->
+<!-- ============================================================ -->
+<div class="area-head" id="area1">
+  <div class="kicker">AREA Ⅰ</div>
+  <h2>개념 탐구 시뮬레이션 🔭</h2>
+  <p class="desc">시뮬레이션을 통해 교과 개념을 학습해 봅시다.</p>
+  <hr class="divider" style="--c1:var(--teal);--c2:var(--sky)">
+</div>
+
+<div class="apps">
+  <a class="app sim" id="fossil-lab" href="https://fossil-lab.vercel.app/" target="_blank" rel="noopener">
+    <div class="app-top"><div class="app-ic">🦕</div><div class="app-name">화석 탐구실</div></div>
+    <p class="app-desc">화석이 형성되는 과정을 체험해 보세요.</p>
+    <div class="app-foot"><div class="subj"><span class="s-int">통합과학</span><span class="s-gen">지구과학</span></div><span class="app-go">열어보기 →</span></div>
+  </a>
+  <a class="app sim" id="stromatolite" href="https://stromatolite.vercel.app/" target="_blank" rel="noopener">
+    <div class="app-top"><div class="app-ic">🪨</div><div class="app-name">스트로마톨라이트 형성과정</div></div>
+    <p class="app-desc">남세균이 스트로마톨라이트가 되는 과정을 관찰해 보세요.</p>
+    <div class="app-foot"><div class="subj"><span class="s-int">통합과학</span></div><span class="app-go">열어보기 →</span></div>
+  </a>
+  <a class="app sim" id="tide-sim" href="https://tide-sim.vercel.app/" target="_blank" rel="noopener">
+    <div class="app-top"><div class="app-ic">🌊</div><div class="app-name">조석 현상 시뮬레이터</div></div>
+    <p class="app-desc">관측자 위도와 달의 적위를 조절하여 조석 형태를 확인해 보세요.</p>
+    <div class="app-foot"><div class="subj"><span class="s-adv">지구과학Ⅱ</span><span class="s-adv">지구시스템과학</span></div><span class="app-go">열어보기 →</span></div>
+  </a>
+  <a class="app sim" id="eclipse" href="https://eclipse-sim.vercel.app/" target="_blank" rel="noopener">
+    <div class="app-top"><div class="app-ic">🌘</div><div class="app-name">일식·월식 시뮬레이터</div></div>
+    <p class="app-desc">태양·지구·달의 위치 관계를 조작하며 식 현상을 탐구해 보세요.</p>
+    <div class="app-foot"><div class="subj"><span class="s-gen">지구과학</span></div><span class="app-go">열어보기 →</span></div>
+  </a>
+  <a class="app sim" id="coordinates" href="https://celestial-coordinates.vercel.app/" target="_blank" rel="noopener">
+    <div class="app-top"><div class="app-ic">🧭</div><div class="app-name">천체의 위치와 좌표계</div></div>
+    <p class="app-desc">천구의 명칭, 지평 좌표계, 적도 좌표계를 탐구해 보세요.</p>
+    <div class="app-foot"><div class="subj"><span class="s-adv">지구과학Ⅱ</span></div><span class="app-go">열어보기 →</span></div>
+  </a>
+  <a class="app sim" id="kepler" href="https://kepler-laws.vercel.app/" target="_blank" rel="noopener">
+    <div class="app-top"><div class="app-ic">🪐</div><div class="app-name">케플러 법칙</div></div>
+    <p class="app-desc">케플러 1법칙, 2법칙, 3법칙을 탐구해 보세요.</p>
+    <div class="app-foot"><div class="subj"><span class="s-adv">지구과학Ⅱ</span></div><span class="app-go">열어보기 →</span></div>
+  </a>
+</div>
+
+<!-- ============================================================ -->
+<!-- 영역 Ⅱ. 데이터 분석·시각화 -->
+<!-- ============================================================ -->
+<div class="area-head" id="area2">
+  <div class="kicker">AREA Ⅱ</div>
+  <h2>데이터 분석·시각화 📈</h2>
+  <p class="desc">실제 관측 자료를 시각화하는 도구를 활용해 실제적 데이터를 분석해 봅시다.</p>
+  <hr class="divider" style="--c1:var(--blue);--c2:var(--violet)">
+</div>
+
+<div class="apps">
+  <a class="app data" id="tide-data" href="https://earthssaem.github.io/lab/tide-data/" target="_blank" rel="noopener">
+    <div class="app-top"><div class="app-ic">📊</div><div class="app-name">조석 데이터 분석 도구</div></div>
+    <p class="app-desc">실제 조위 관측 자료를 분석해 보세요.</p>
+    <div class="app-foot"><div class="subj"><span class="s-adv">지구과학Ⅱ</span><span class="s-adv">지구시스템과학</span></div><span class="app-go">열어보기 →</span></div>
+  </a>
+  <a class="app data" id="climate-data" href="https://earthssaem.github.io/lab/climate-data/" target="_blank" rel="noopener">
+    <div class="app-top"><div class="app-ic">🌡️</div><div class="app-name">기후변화 데이터 분석 도구</div></div>
+    <p class="app-desc">실제 기온과 온실기체 관측 자료를 분석해 보세요.</p>
+    <div class="app-foot"><div class="subj"><span class="s-int">통합과학</span><span class="s-gen">지구과학</span></div><span class="app-go">열어보기 →</span></div>
+  </a>
+</div>
+
+<!-- ============================================================ -->
+<!-- 영역 Ⅲ. 복습용 게임 -->
+<!-- ============================================================ -->
+<div class="area-head" id="area3">
+  <div class="kicker">AREA Ⅲ</div>
+  <h2>복습용 게임 🎮</h2>
+  <p class="desc">학습한 교과 내용을 게임으로 복습해 봅시다.</p>
+  <hr class="divider" style="--c1:var(--orange);--c2:#f59e0b">
+</div>
+
+<div class="apps">
+  <a class="app game" id="fossil-explorer" href="https://fossil-explorer.vercel.app/" target="_blank" rel="noopener">
+    <div class="app-top"><div class="app-ic">⛏️</div><div class="app-name">화석 탐험대</div></div>
+    <p class="app-desc">지질 공원에서 지층을 찾아 화석을 발견하며 지질 시대 단원 내용을 복습해 보세요.</p>
+    <div class="app-foot"><div class="subj"><span class="s-int">통합과학</span><span class="s-gen">지구과학</span></div><span class="app-go">시작하기 →</span></div>
+  </a>
+  <a class="app game" id="escape" href="https://integratedscience1-escape.vercel.app/" target="_blank" rel="noopener">
+    <div class="app-top"><div class="app-ic">🚪</div><div class="app-name">통합과학 복습용 방탈출 게임</div></div>
+    <p class="app-desc">빅뱅부터 판 구조론까지 다섯 개의 방을 탈출하며 1학기에 학습한 내용을 복습해 보세요.</p>
+    <div class="app-foot"><div class="subj"><span class="s-int">통합과학</span></div><span class="app-go">시작하기 →</span></div>
+  </a>
+</div>
+
+</div>
+
+<footer>
+  🌏 <b>지구과학 배움터</b> · 개념 탐구 시뮬레이션 · 데이터 분석·시각화 · 복습용 게임
+</footer>
+
+</body>
+</html>
