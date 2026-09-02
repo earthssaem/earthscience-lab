@@ -84,7 +84,7 @@
   .app-ic{flex:0 0 auto;width:52px;height:52px;border-radius:15px;display:grid;place-items:center;font-size:26px;background:var(--accent-soft)}
   .app-name{font-weight:900;font-size:18px;line-height:1.3;letter-spacing:-.3px}
   .app-desc{font-size:14.5px;color:#3a4256;margin:0 0 14px;line-height:1.65;flex:1}
-  .app-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+  .app-foot{display:flex;flex-direction:column;align-items:flex-start;gap:8px}
   .subj{display:inline-flex;gap:4px;flex-wrap:wrap}
   .subj span{font-size:12px;font-weight:800;padding:3px 10px;border-radius:999px;background:var(--s-soft);color:var(--s)}
   .subj .s-int{--s:var(--emerald);--s-soft:var(--emerald-soft)}
@@ -153,32 +153,32 @@
   <a class="app sim" id="fossil-lab" href="https://fossil-lab.vercel.app/" target="_blank" rel="noopener">
     <div class="app-top"><div class="app-ic">🦕</div><div class="app-name">화석 탐구실</div></div>
     <p class="app-desc">화석이 형성되는 과정을 체험해 보세요.</p>
-    <div class="app-foot"><div class="subj"><span class="s-int">통합과학(2022개정)</span><span class="s-gen">지구과학(2022개정)</span></div><span class="app-go">열어보기 →</span></div>
+    <div class="app-foot"><div class="subj"><span class="s-int">통합과학(2022개정)</span><span class="s-gen">지구과학(2022개정)</span></div><span class="app-go">클릭 →</span></div>
   </a>
   <a class="app sim" id="stromatolite" href="https://stromatolite.vercel.app/" target="_blank" rel="noopener">
     <div class="app-top"><div class="app-ic">🪨</div><div class="app-name">스트로마톨라이트 형성과정</div></div>
     <p class="app-desc">남세균이 스트로마톨라이트가 되는 과정을 관찰해 보세요.</p>
-    <div class="app-foot"><div class="subj"><span class="s-int">통합과학(2022개정)</span><span class="s-gen">지구과학(2022개정)</span></div><span class="app-go">열어보기 →</span></div>
+    <div class="app-foot"><div class="subj"><span class="s-int">통합과학(2022개정)</span><span class="s-gen">지구과학(2022개정)</span></div><span class="app-go">클릭 →</span></div>
   </a>
   <a class="app sim" id="tide-sim" href="https://tide-sim.vercel.app/" target="_blank" rel="noopener">
     <div class="app-top"><div class="app-ic">🌊</div><div class="app-name">조석 현상 시뮬레이터</div></div>
     <p class="app-desc">관측자 위도와 달의 적위를 조절하여 조석 형태를 확인해 보세요.</p>
-    <div class="app-foot"><div class="subj"><span class="s-adv">지구과학Ⅱ(2015개정)</span><span class="s-sys">지구시스템과학(2022개정)</span></div><span class="app-go">열어보기 →</span></div>
+    <div class="app-foot"><div class="subj"><span class="s-adv">지구과학Ⅱ(2015개정)</span><span class="s-sys">지구시스템과학(2022개정)</span></div><span class="app-go">클릭 →</span></div>
   </a>
   <a class="app sim" id="eclipse" href="https://eclipse-sim.vercel.app/" target="_blank" rel="noopener">
     <div class="app-top"><div class="app-ic">🌘</div><div class="app-name">일식·월식 시뮬레이터</div></div>
     <p class="app-desc">태양·지구·달의 위치 관계를 조작하며 식 현상을 탐구해 보세요.</p>
-    <div class="app-foot"><div class="subj"><span class="s-gen">지구과학(2022개정)</span></div><span class="app-go">열어보기 →</span></div>
+    <div class="app-foot"><div class="subj"><span class="s-gen">지구과학(2022개정)</span></div><span class="app-go">클릭 →</span></div>
   </a>
   <a class="app sim" id="coordinates" href="https://celestial-coordinates.vercel.app/" target="_blank" rel="noopener">
     <div class="app-top"><div class="app-ic">🧭</div><div class="app-name">천체의 위치와 좌표계</div></div>
     <p class="app-desc">천구의 명칭, 지평 좌표계, 적도 좌표계를 탐구해 보세요.</p>
-    <div class="app-foot"><div class="subj"><span class="s-adv">지구과학Ⅱ(2015개정)</span></div><span class="app-go">열어보기 →</span></div>
+    <div class="app-foot"><div class="subj"><span class="s-adv">지구과학Ⅱ(2015개정)</span></div><span class="app-go">클릭 →</span></div>
   </a>
   <a class="app sim" id="kepler" href="https://kepler-laws.vercel.app/" target="_blank" rel="noopener">
     <div class="app-top"><div class="app-ic">🪐</div><div class="app-name">케플러 법칙</div></div>
     <p class="app-desc">케플러 1법칙, 2법칙, 3법칙을 탐구해 보세요.</p>
-    <div class="app-foot"><div class="subj"><span class="s-adv">지구과학Ⅱ(2015개정)</span></div><span class="app-go">열어보기 →</span></div>
+    <div class="app-foot"><div class="subj"><span class="s-adv">지구과학Ⅱ(2015개정)</span></div><span class="app-go">클릭 →</span></div>
   </a>
 </div>
 
@@ -196,12 +196,12 @@
   <a class="app data" id="tide-data" href="https://earthssaem.github.io/lab/tide-data/" target="_blank" rel="noopener">
     <div class="app-top"><div class="app-ic">📊</div><div class="app-name">조석 데이터 분석 도구</div></div>
     <p class="app-desc">실제 조위 관측 자료를 분석해 보세요.</p>
-    <div class="app-foot"><div class="subj"><span class="s-adv">지구과학Ⅱ(2015개정)</span><span class="s-sys">지구시스템과학(2022개정)</span></div><span class="app-go">열어보기 →</span></div>
+    <div class="app-foot"><div class="subj"><span class="s-adv">지구과학Ⅱ(2015개정)</span><span class="s-sys">지구시스템과학(2022개정)</span></div><span class="app-go">클릭 →</span></div>
   </a>
   <a class="app data" id="climate-data" href="https://earthssaem.github.io/lab/climate-data/" target="_blank" rel="noopener">
     <div class="app-top"><div class="app-ic">🌡️</div><div class="app-name">기후변화 데이터 분석 도구</div></div>
     <p class="app-desc">실제 기온과 온실기체 관측 자료를 분석해 보세요.</p>
-    <div class="app-foot"><div class="subj"><span class="s-int">통합과학(2022개정)</span><span class="s-gen">지구과학(2022개정)</span></div><span class="app-go">열어보기 →</span></div>
+    <div class="app-foot"><div class="subj"><span class="s-int">통합과학(2022개정)</span><span class="s-gen">지구과학(2022개정)</span></div><span class="app-go">클릭 →</span></div>
   </a>
 </div>
 
@@ -219,12 +219,12 @@
   <a class="app game" id="fossil-explorer" href="https://fossil-explorer.vercel.app/" target="_blank" rel="noopener">
     <div class="app-top"><div class="app-ic">⛏️</div><div class="app-name">화석 탐험대</div></div>
     <p class="app-desc">지질 공원에서 지층을 찾아 화석을 발견하며 지질 시대 단원 내용을 복습해 보세요.</p>
-    <div class="app-foot"><div class="subj"><span class="s-int">통합과학(2022개정)</span><span class="s-gen">지구과학(2022개정)</span></div><span class="app-go">시작하기 →</span></div>
+    <div class="app-foot"><div class="subj"><span class="s-int">통합과학(2022개정)</span><span class="s-gen">지구과학(2022개정)</span></div><span class="app-go">클릭 →</span></div>
   </a>
   <a class="app game" id="escape" href="https://integratedscience1-escape.vercel.app/" target="_blank" rel="noopener">
     <div class="app-top"><div class="app-ic">🚪</div><div class="app-name">통합과학 복습용 방탈출 게임</div></div>
     <p class="app-desc">빅뱅부터 판 구조론까지 다섯 개의 방을 탈출하며 1학기에 학습한 내용을 복습해 보세요.</p>
-    <div class="app-foot"><div class="subj"><span class="s-int">통합과학(2022개정)</span></div><span class="app-go">시작하기 →</span></div>
+    <div class="app-foot"><div class="subj"><span class="s-int">통합과학(2022개정)</span></div><span class="app-go">클릭 →</span></div>
   </a>
 </div>
 
